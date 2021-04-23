@@ -1,0 +1,14 @@
+services:
+  redis:
+    image: redis:latest
+  api:
+    build: .
+    environment:
+      REDIS_HOST: redis
+    ports:
+      - "9090:9090"
+    volumes:
+      - .:/usr/src/app
+    command: puma -p 9090
+    
+  

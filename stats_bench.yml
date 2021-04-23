@@ -1,0 +1,10 @@
+---
+
+concurrency: 100
+base: 'http://localhost:9292'
+iterations: 10000
+
+plan:
+  - name: Stats
+    request:
+      url: /stats

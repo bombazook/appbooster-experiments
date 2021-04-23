@@ -1,0 +1,11 @@
+require: rubocop-rspec
+AllCops:
+  TargetRubyVersion: 3.0.1
+Metrics/MethodLength:
+  Max: 15
+Style/InfiniteLoop:
+  Enabled: false
+Metrics/BlockLength:
+  IgnoredMethods: ['describe', 'context']
+RSpec/ExampleLength:
+  Max: 10

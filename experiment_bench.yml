@@ -1,0 +1,16 @@
+---
+
+concurrency: 10
+base: 'http://localhost:9292'
+iterations: 10
+
+plan:
+  - name: New Experiments
+    request:
+      url: /experiment
+      headers: 
+        Device-Token: drill_{{ item }}
+    with_items_range:
+      start: 1
+      step: 1
+      stop: 600
