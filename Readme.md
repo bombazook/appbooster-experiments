@@ -32,3 +32,7 @@ Sample standard deviation 10ms
 ### Live demo
 
 [experiments.kostrov.net](https://experiments.kostrov.net)
+
+Stats: https://experiments.kostrov.net/stats
+
+Experiment: https://experiments.kostrov.net/experiment (require Device-Token header)
