@@ -9,7 +9,7 @@ services:
       - "9090:9090"
     volumes:
       - .:/usr/src/app
-    command: puma -p 9090
+    command: falcon serve --bind http://0.0.0.0:9090
   test:
     build: .
     volumes:

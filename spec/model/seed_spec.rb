@@ -3,8 +3,8 @@
 RSpec.describe Model::Seed, redis: true do
   subject { described_class.new(experiments_list: experiments_list) }
 
-  let(:experiment1) { instance_double(Algorithms::Weighted, call: 1) }
-  let(:experiment2) { instance_double(Algorithms::Weighted, call: 2) }
+  let(:experiment1) { instance_spy(Algorithms::Weighted, call: 1) }
+  let(:experiment2) { instance_spy(Algorithms::Weighted, call: 2) }
   let(:experiments_list) do
     { experiment1: experiment1, experiment2: experiment2 }
   end
@@ -14,13 +14,13 @@ RSpec.describe Model::Seed, redis: true do
     let(:experiment) { :experiment1 }
 
     it 'calls selected experiments' do
-      expect(experiment1).to receive(:call).at_least(1)
       subject.call(key, experiment)
+      expect(experiment1).to have_received(:call).at_least(1)
     end
 
     it 'doesn\'t call other experiments' do
-      expect(experiment2).not_to receive(:call)
       subject.call(key, experiment)
+      expect(experiment2).not_to have_received(:call)
     end
 
     it 'returns same result for same key' do
@@ -30,10 +30,9 @@ RSpec.describe Model::Seed, redis: true do
     end
 
     it 'increments counter only once on concurrent calls' do
-      allow(experiment1).to receive(:call) { |key| Digest::SHA2.hexdigest(key || '') }
       50.times do
         fork do
-          allow(subject).to receive(:call).and_wrap_original { |m, *args| m.call(*args); exit 0 }
+          allow(subject).to(receive(:call).and_wrap_original { |m, *args| m.call(*args); exit(0) })
           subject.call(key, experiment)
         end
       end

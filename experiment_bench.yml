@@ -1,7 +1,7 @@
 ---
 
 concurrency: 10
-base: 'http://localhost:9292'
+base: 'http://localhost:9090'
 iterations: 10
 
 plan:

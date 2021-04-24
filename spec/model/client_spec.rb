@@ -5,7 +5,7 @@ require 'spec_helper'
 RSpec.describe Model::Client, redis: true do
   subject { described_class.new(seed: seed, experiments_list: experiments_list) }
 
-  let(:seed) { spy(Model::Seed) }
+  let(:seed) { instance_double(Model::Seed, call: 1) }
   let(:experiment1) { instance_double(Algorithms::Weighted, call: 1) }
   let(:experiment2) { instance_double(Algorithms::Weighted, call: 2) }
   let(:experiments_list) do
@@ -36,7 +36,7 @@ RSpec.describe Model::Client, redis: true do
     it 'call Model::Seed on one instance for concurrent calls on new value' do
       50.times.map do
         fork do
-          allow(subject).to receive(:call).and_wrap_original { |m, *args| m.call(*args); exit 0 }
+          allow(subject).to(receive(:call).and_wrap_original { |m, *args| m.call(*args); exit 0 })
           subject.call(key)
         end
       end

@@ -7,9 +7,9 @@ gem 'dry-initializer'
 gem 'dry-monads'
 gem 'dry-system'
 gem 'dry-validation'
+gem 'falcon'
 gem 'hanami-api'
 gem 'pry'
-gem 'puma'
 gem 'redis'
 gem 'rubocop', require: false
 group :test do

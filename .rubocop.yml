@@ -9,3 +9,15 @@ Metrics/BlockLength:
   IgnoredMethods: ['describe', 'context']
 RSpec/ExampleLength:
   Max: 10
+Style/Documentation:
+  Enabled: false
+RSpec/NamedSubject:
+  Enabled: false
+Style/Semicolon:
+  Enabled: false
+RSpec/AnyInstance:
+  Enabled: false
+RSpec/SubjectStub:
+  Enabled: false
+RSpec/MultipleExpectations:
+  Max: 2
