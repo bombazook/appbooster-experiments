@@ -1,10 +1,10 @@
 ### To run locally
 
-docker-compose -f docker-compose-local.yml up -d --build
+`docker-compose -f docker-compose-local.yml up -d --build`
 
 ### 600-new-ids load test using [drill](https://github.com/fcsonline/drill)
 
-drill --benchmark experiment_bench.yml --stats
+`drill --benchmark experiment_bench.yml --stats`
 
 results for Macbook Air:
 ```
@@ -27,7 +27,7 @@ Sample standard deviation 10ms
 
 ### To run specs
 
-docker-compose -f docker-compose-local.yml run test bundle exec rspec spec
+`docker-compose -f docker-compose-local.yml run test bundle exec rspec spec`
 
 ### Live demo
 
