@@ -1,3 +1,23 @@
+### API
+
+`GET /stats` # => returns json {"experiments.<experiment_key>": {"\<value\>": \<count\>, ...}, ..., "total": \<clients count\>}
+
+`GET /experiment` # *requires Device-Token header* => returns json {"experiments.<experiment_key>": \<value\>, ...}
+
+available experiment_keys:
+- *color*
+- *price*
+
+#### examples:
+
+`curl -H "Device-Token: test_user" https://experiments.kostrov.net/experiment`
+
+returns {"experiments.color":"#00FF00","experiments.price":10}
+
+`curl https://experiments.kostrov.net/stats`
+
+returns {"experiments.color":{"#00FF00":1},"experiments.price":{"10":1},"total":1}
+
 ### To run locally
 
 `docker-compose -f docker-compose-local.yml up -d --build`
