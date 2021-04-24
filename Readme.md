@@ -1,8 +1,12 @@
 ### API
 
-`GET /stats` # => returns json {"experiments.<experiment_key>": {"\<value\>": \<count\>, ...}, ..., "total": \<clients count\>}
+`GET /stats` 
 
-`GET /experiment` # *requires Device-Token header* => returns json {"experiments.<experiment_key>": \<value\>, ...}
+returns json {"experiments.<experiment_key>": {"\<value\>": \<count\>, ...}, ..., "total": \<clients count\>}
+
+`GET /experiment` *requires Device-Token header*
+
+returns json {"experiments.<experiment_key>": \<value\>, ...}
 
 available experiment_keys:
 - *color*
